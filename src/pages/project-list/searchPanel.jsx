@@ -1,15 +1,8 @@
-import { useState } from "react"
-
-export const SearchPanel = () => {
-  const [param, setParam] = useState({
-    name: '',
-    personId: ''
-  })
-  const [users, setUsers] = useState([])
+export const SearchPanel = ({ users, param, setParam }) => {
 
   return <form>
     <div>
-      <input type="text" value={parm.name} onChange={e => setParam({
+      <input type="text" value={param.name} onChange={e => setParam({
         ...param,
         name: e.target.value
       })} />
@@ -17,10 +10,10 @@ export const SearchPanel = () => {
         ...param,
         personId: e.target.value
       })}>
-        <option value={""}>负责人</option>
+        <option value={''}>负责人</option>
         {
           users.map(user => {
-            return <option value={""}>{{ user }}</option>
+            return <option key={user.id} value={user.id}>{user.name}</option>
           })
         }
       </select>
