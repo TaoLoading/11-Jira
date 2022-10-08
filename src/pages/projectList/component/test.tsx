@@ -1,4 +1,4 @@
-import { useArray } from '../../utils'
+import { useArray } from '../../../utils'
 
 interface PersonType {
   name: string,

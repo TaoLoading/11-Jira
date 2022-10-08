@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 
 // 清除对象中的空值
 export const cleanObject = (object: object) => {
+  // 注意此处不直接改变原对象
   const result = { ...object }
   Object.keys(result).forEach(key => {
     // @ts-ignore
     const value = result[key]
-    if (value === '') {
+    if (!value && value !== 0) {
       // @ts-ignore
       delete result[key]
     }
@@ -18,14 +19,13 @@ export const cleanObject = (object: object) => {
 export const useDebounce = <T>(value: T, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value)
   useEffect(() => {
-    // 每次value变化后设置一个定时器
     const timeout = setTimeout(() => {
       setDebouncedValue(value)
     }, delay)
-    // 清理上一个定时器
     return () => clearTimeout(timeout)
   }, [value, delay])
   return debouncedValue
+
 }
 
 export const useArray = <T>(initArr: T[]) => {
