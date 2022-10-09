@@ -22,7 +22,7 @@ export const HookTest = () => {
       <button onClick={() => clear()}>clear</button>
       {/* 列表展示 */}
       {value.map((person: PersonType, index: number) => (
-        <div style={{ marginBottom: '30px' }}>
+        <div style={{ marginBottom: '30px' }} key={person.name}>
           <span style={{ color: 'red' }}>{index}</span>
           <span>{person.name}</span>
           <span>{person.age}</span>

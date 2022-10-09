@@ -15,7 +15,7 @@ export const cleanObject = (object: object) => {
   return result
 }
 
-// 自定义hook，防抖函数
+// 防抖函数
 export const useDebounce = <T>(value: T, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value)
   useEffect(() => {
@@ -28,15 +28,16 @@ export const useDebounce = <T>(value: T, delay: number) => {
 
 }
 
+// 数组中元素的增、移除特定元素、清空数组
 export const useArray = <T>(initArr: T[]) => {
   const [value, setValue] = useState(initArr)
   return {
     value,
     clear: () => setValue([]),
     removeIndex: (index: number) => {
-      const copy = [...value]
-      copy.splice(index, 1)
-      setValue(copy)
+      const copyArr = [...value]
+      copyArr.splice(index, 1)
+      setValue(copyArr)
     },
     add: (item: T) => { setValue([...value, item]) }
   }
