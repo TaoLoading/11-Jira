@@ -3,7 +3,7 @@ import { FormEvent } from 'react'
 const apiUrl = process.env.REACT_APP_API_URL
 
 const login = (params: { username: string, password: string }) => {
-  fetch(`${apiUrl}/login`, {
+  fetch(`${apiUrl}/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
