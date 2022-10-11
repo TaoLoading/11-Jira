@@ -1,14 +1,14 @@
 import './App.css'
-// import { ProjectList } from './pages/projectList/index'
-// import { HookTest } from './pages/projectList/component/test'
-import { LoginPage } from './pages/login/index'
+import { AuthenticatedApp } from './authenticated-app'
+import { useAuth } from './context/auth-context'
+import { UnauthenticatedApp } from './unauthenticated-app'
 
 function App() {
+  const { user } = useAuth()
+
   return (
     <div className="App">
-      {/* <ProjectList></ProjectList> */}
-      {/* <HookTest></HookTest> */}
-      <LoginPage></LoginPage>
+      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </div>
   )
 }
