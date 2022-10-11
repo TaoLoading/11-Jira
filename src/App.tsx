@@ -1,14 +1,14 @@
 import './App.css'
 // import { ProjectList } from './pages/projectList/index'
 // import { HookTest } from './pages/projectList/component/test'
-import { Login } from './pages/login/index'
+import { LoginPage } from './pages/login/index'
 
 function App() {
   return (
     <div className="App">
       {/* <ProjectList></ProjectList> */}
       {/* <HookTest></HookTest> */}
-      <Login></Login>
+      <LoginPage></LoginPage>
     </div>
   )
 }
