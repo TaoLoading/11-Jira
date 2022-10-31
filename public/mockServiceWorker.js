@@ -1,4 +1,6 @@
 /**
+ * 该文件用于启动分布式后端
+ * 
  * Mock Service Worker.
  * @see https://github.com/mswjs/msw
  * - Please do NOT modify this file.
