@@ -1,3 +1,7 @@
+/**
+ * 实现组件间通信
+ */
+
 import { ReactNode } from 'react'
 import { AuthProvider } from './auth-context'
 

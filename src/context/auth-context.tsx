@@ -1,3 +1,7 @@
+/**
+ * 自定义hook，实现组件通信
+ */
+
 import { useState, createContext, useContext, ReactNode } from 'react'
 import * as auth from '../auth-provider'
 import { User } from '../pages/projectList/component/searchPanel'
@@ -28,7 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext)
   if (!context) {
-    throw new Error('context必须在Provider中使用')
+    throw new Error('useAuth必须在Provider中使用')
   }
   return context
 }

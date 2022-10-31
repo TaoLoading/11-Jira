@@ -1,5 +1,5 @@
 /**
- * 模拟登录注册相关认证
+ * 模拟实现登录注册相关认证
  */
 
 import { User } from './pages/projectList/component/searchPanel'
@@ -24,6 +24,7 @@ export const register = (data: { username: string, password: string }) => {
     body: JSON.stringify(data)
   }).then(async res => {
     if (res.ok) {
+      // 种下token
       return handleUserResponse(await res.json())
     } else {
       return Promise.reject(data)
@@ -41,6 +42,7 @@ export const login = (data: { username: string, password: string }) => {
     body: JSON.stringify(data)
   }).then(async res => {
     if (res.ok) {
+      // 种下token
       return handleUserResponse(await res.json())
     } else {
       return Promise.reject(data)
