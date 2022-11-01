@@ -1,5 +1,7 @@
 /**
  * 封装请求
+ * 
+ * http和useHttp的区别在于是否自动传入token
  */
 import qs from 'qs'
 import * as auth from '../auth-provider'
