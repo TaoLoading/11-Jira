@@ -41,7 +41,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = () => auth.logout().then(() => setUser(null))
 
   useEffect(() => {
-    console.log('xxxxxxxx')
     // 加载程序前先初始化一次user，实现登录持久化
     initUser().then(setUser)
   }, [])
