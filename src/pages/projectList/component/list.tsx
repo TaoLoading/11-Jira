@@ -2,6 +2,8 @@
  * 列表展示组件
  */
 
+import { Table } from 'antd'
+import { useCallback } from 'react'
 import { User } from './searchPanel'
 
 interface Project {
@@ -17,22 +19,27 @@ interface ListProps {
 }
 
 export const List = ({ users, list }: ListProps) => {
+  const sorter = useCallback((a: Project, b: Project, key: 'name' | 'organization') => {
+    return a[key].localeCompare(b[key])
+  }, [])
+
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>名称</th>
-          <th>负责人</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          list.map(project => <tr key={project.id}>
-            <td>{project.name}</td>
-            <td>{users.find(user => user.id === project.personId)?.name || '未知'}</td>
-          </tr>)
+    <Table rowKey="id" pagination={false} columns={[
+      {
+        title: '名称',
+        dataIndex: 'name',
+        sorter: (a, b) => sorter(a, b, 'name')
+      },
+      {
+        title: '负责人',
+        render(value, project) {
+          return (
+            <span>
+              {users.find(user => user.id === project.personId)?.name || '未知'}
+            </span>
+          )
         }
-      </tbody>
-    </table>
+      }
+    ]} dataSource={list} />
   )
 }
