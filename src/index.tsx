@@ -7,7 +7,6 @@ import { ConfigProvider } from 'antd'
 import zhCN from 'antd/es/locale/zh_CN'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import './index.css'
 import { AppProviders } from './context/index'
 
 loadDevTools(() => {

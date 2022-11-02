@@ -1,10 +1,9 @@
 /**
  * 此文件为craco的配置文件
- * 
- * 通过自定义create-react-app来实现对antd的自定义
  */
 
 const CracoLessPlugin = require('craco-less')
+const path = require('path')
 
 module.exports = {
   plugins: [
@@ -22,5 +21,14 @@ module.exports = {
         }
       }
     }
-  ]
+  ],
+  devServer: {
+    port: 8080,
+    open: true
+  },
+  webpack: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
+  }
 }

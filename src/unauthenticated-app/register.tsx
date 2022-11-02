@@ -1,5 +1,6 @@
-import { Form, Input, Button } from 'antd'
+import { Form, Input } from 'antd'
 import { useAuth } from '../context/auth-context'
+import { LongButton } from './index'
 
 export const RegisterPage = () => {
   const { register } = useAuth()
@@ -20,7 +21,7 @@ export const RegisterPage = () => {
       >
         <Input placeholder="密码" type="password" id="password" />
       </Form.Item>
-      <Button type="primary" htmlType="submit">注册</Button>
+      <LongButton type="primary" htmlType="submit">注册</LongButton>
     </Form>
   )
 }
