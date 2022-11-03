@@ -23,8 +23,9 @@ module.exports = {
     }
   ],
   devServer: {
+    host: 'localhost',
     port: 8080,
-    open: true
+    // open: true
   },
   webpack: {
     alias: {
