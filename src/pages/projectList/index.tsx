@@ -3,6 +3,7 @@ import { List } from './component/list'
 import { SearchPanel } from './component/searchPanel'
 import { cleanObject, useDebounce } from '../../utils/index'
 import { useHttp } from '../../utils/http'
+import styled from '@emotion/styled'
 
 export const ProjectList = () => {
   // 查询参数
@@ -30,9 +31,14 @@ export const ProjectList = () => {
   }, [debouncedParam])
 
   return (
-    <div>
+    <Container>
+      <h1>项目列表</h1>
       <SearchPanel users={users} param={param} setParam={setParam}></SearchPanel>
       <List users={users} list={list}></List>
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  padding: 3.2rem;
+`

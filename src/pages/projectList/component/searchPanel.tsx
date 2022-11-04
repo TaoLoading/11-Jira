@@ -2,7 +2,7 @@
  * 列表查询组件
  */
 
-import { Input, Select } from 'antd'
+import { Form, Input, Select } from 'antd'
 
 export interface User {
   id: string
@@ -24,22 +24,26 @@ interface SearchPanelProps {
 
 export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
   return (
-    <div>
-      <Input type="text" value={param.name} placeholder="请输入项目全称" onChange={e => setParam({
-        ...param,
-        name: e.target.value
-      })} />
-      <Select value={param.personId} onChange={id => setParam({
-        ...param,
-        personId: id
-      })}>
-        <Select.Option value={''}>负责人</Select.Option>
-        {
-          users.map(user => {
-            return <Select.Option key={user.id} value={user.id}>{user.name}</Select.Option>
-          })
-        }
-      </Select>
-    </div>
+    <Form layout={"inline"} style={{ marginBottom: "2rem" }}>
+      <Form.Item>
+        <Input type="text" value={param.name} placeholder="请输入项目全称" onChange={e => setParam({
+          ...param,
+          name: e.target.value
+        })} />
+      </Form.Item>
+      <Form.Item>
+        <Select value={param.personId} onChange={id => setParam({
+          ...param,
+          personId: id
+        })}>
+          <Select.Option value={""}>负责人</Select.Option>
+          {
+            users.map(user => {
+              return <Select.Option key={user.id} value={user.id}>{user.name}</Select.Option>
+            })
+          }
+        </Select>
+      </Form.Item>
+    </Form>
   )
 }

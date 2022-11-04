@@ -2,6 +2,7 @@
  * 模拟实现登录注册相关认证
  */
 
+import { message } from 'antd'
 import { User } from './pages/projectList/component/searchPanel'
 
 const localStorageKey = '__auth_provider_token__'
@@ -24,9 +25,11 @@ export const register = (data: { username: string, password: string }) => {
     body: JSON.stringify(data)
   }).then(async res => {
     if (res.ok) {
+      message.success('注册成功')
       // 种下token
       return handleUserResponse(await res.json())
     } else {
+      message.error('注册失败')
       return Promise.reject(data)
     }
   })
@@ -42,9 +45,11 @@ export const login = (data: { username: string, password: string }) => {
     body: JSON.stringify(data)
   }).then(async res => {
     if (res.ok) {
+      message.success('登录成功')
       // 种下token
       return handleUserResponse(await res.json())
     } else {
+      message.error('登录失败')
       return Promise.reject(data)
     }
   })
@@ -53,5 +58,6 @@ export const login = (data: { username: string, password: string }) => {
 // 登出
 export const logout = () => {
   window.localStorage.removeItem(localStorageKey)
+  message.success('用户已登出')
   return Promise.resolve(null)
 }
