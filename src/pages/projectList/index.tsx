@@ -21,6 +21,7 @@ export const ProjectList = () => {
   // 查询项目列表数据
   useEffect(() => {
     client('projects', { data: cleanObject(debouncedParam) }).then(setList)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedParam])
 
   // 用户数据
@@ -28,6 +29,7 @@ export const ProjectList = () => {
   // 查询用户数据
   useEffect(() => {
     client('users').then(setUsers)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedParam])
 
   return (

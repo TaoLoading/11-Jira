@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react'
 
 // 清除对象中的空值
-export const cleanObject = (object: object) => {
+export const cleanObject = (object: { [key: string]: unknown }) => {
   // 注意此处不直接改变原对象
   const result = { ...object }
   Object.keys(result).forEach(key => {
-    // @ts-ignore
     const value = result[key]
     if (!value && value !== 0) {
-      // @ts-ignore
       delete result[key]
     }
   })
