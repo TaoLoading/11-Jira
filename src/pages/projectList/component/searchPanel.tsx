@@ -26,7 +26,7 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
   return (
     <Form layout={"inline"} style={{ marginBottom: "2rem" }}>
       <Form.Item>
-        <Input type="text" value={param.name} placeholder="请输入项目全称" onChange={e => setParam({
+        <Input type="text" value={param.name} placeholder="请输入项目名称" onChange={e => setParam({
           ...param,
           name: e.target.value
         })} />

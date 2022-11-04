@@ -2,12 +2,12 @@
  * 列表展示组件
  */
 
-import { Table } from 'antd'
+import { Table, TableProps } from 'antd'
 import { useCallback } from 'react'
 import dayjs from 'dayjs'
 import { User } from './searchPanel'
 
-interface Project {
+export interface Project {
   id: string
   name: string,
   personId: string,
@@ -15,12 +15,11 @@ interface Project {
   organization: string,
   created: number
 }
-interface ListProps {
-  users: User[],
-  list: Project[]
+interface ListProps extends TableProps<Project> {
+  users: User[]
 }
 
-export const List = ({ users, list }: ListProps) => {
+export const List = ({ users, ...props }: ListProps) => {
   const sorter = useCallback((a: Project, b: Project, key: 'name' | 'organization') => {
     return a[key].localeCompare(b[key])
   }, [])
@@ -56,6 +55,8 @@ export const List = ({ users, list }: ListProps) => {
           )
         }
       }
-    ]} dataSource={list} />
+    ]}
+      {...props}
+    />
   )
 }

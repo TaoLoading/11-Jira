@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
-import { List } from './component/list'
-import { SearchPanel } from './component/searchPanel'
-import { cleanObject, useDebounce } from '../../utils/index'
-import { useHttp } from '../../utils/http'
 import styled from '@emotion/styled'
+import { Typography } from 'antd'
+import { List, Project } from './component/list'
+import { SearchPanel } from './component/searchPanel'
+import { cleanObject } from '../../utils/index'
+import { useHttp } from '../../utils/http'
+import { useDebounce } from '../../hooks/useDebounce'
+import { useAsync } from '../../hooks/useAsync'
 
 export const ProjectList = () => {
   // 查询参数
@@ -13,19 +16,18 @@ export const ProjectList = () => {
   })
   // 防抖后的查询参数
   const debouncedParam = useDebounce(param, 500)
+  // 用户数据
+  const [users, setUsers] = useState([])
   // 封装的请求
   const client = useHttp()
+  const { isLoading, error, data, run } = useAsync<Project[]>()
 
-  // 项目列表数据
-  const [list, setList] = useState([])
   // 查询项目列表数据
   useEffect(() => {
-    client('projects', { data: cleanObject(debouncedParam) }).then(setList)
+    run(client('projects', { data: cleanObject(debouncedParam) }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedParam])
 
-  // 用户数据
-  const [users, setUsers] = useState([])
   // 查询用户数据
   useEffect(() => {
     client('users').then(setUsers)
@@ -36,7 +38,8 @@ export const ProjectList = () => {
     <Container>
       <h1>项目列表</h1>
       <SearchPanel users={users} param={param} setParam={setParam}></SearchPanel>
-      <List users={users} list={list}></List>
+      {error ? <Typography.Text type={"danger"}>{error.message}</Typography.Text> : null}
+      <List users={users} dataSource={data || []} loading={isLoading}></List>
     </Container>
   )
 }
