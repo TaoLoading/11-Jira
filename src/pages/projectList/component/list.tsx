@@ -25,7 +25,7 @@ export const List = ({ users, ...props }: ListProps) => {
   }, [])
 
   return (
-    <Table rowKey="id" pagination={false} columns={[
+    <Table {...props} rowKey="id" pagination={false} columns={[
       {
         title: '名称',
         dataIndex: 'name',
@@ -55,8 +55,6 @@ export const List = ({ users, ...props }: ListProps) => {
           )
         }
       }
-    ]}
-      {...props}
-    />
+    ]} />
   )
 }

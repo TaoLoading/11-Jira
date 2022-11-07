@@ -10,6 +10,7 @@ interface State<T> {
   error: Error | null
 }
 
+// 默认状态
 const defaultStatus: State<null> = {
   status: 'idle',
   data: null,
