@@ -2,10 +2,13 @@
  * 自定义hook，实现组件通信
  */
 
-import { useState, createContext, useContext, ReactNode, useEffect } from 'react'
+import { createContext, useContext, ReactNode, useEffect } from 'react'
 import * as auth from '../auth-provider'
+import { useAsync } from '../hooks/useAsync'
 import { User } from '../pages/projectList/component/searchPanel'
 import { http } from '../utils/http'
+import { PageLoading } from '../pages/pageLoading'
+import { PageError } from '../pages/pageError'
 
 interface FormType {
   username: string,
@@ -34,7 +37,7 @@ AuthContext.displayName = 'AuthContext'
 
 // 创建可以进行通信的组件
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null)
+  const { data: user, run, error, isLoading, isIdle, isError, setData: setUser } = useAsync<User | null>()
 
   const login = (form: FormType) => auth.login(form).then(user => setUser(user))
   const register = (form: FormType) => auth.register(form).then(user => setUser(user))
@@ -42,8 +45,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     // 加载程序前先初始化一次user，实现登录持久化
-    initUser().then(setUser)
+    // initUser().then(setUser)
+    run(initUser())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // 当等待执行或加载时展示loading
+  if (isIdle || isLoading) {
+    return <PageLoading />
+  }
+
+  // 初始失败时展示错误页
+  if (isError) {
+    return <PageError error={error} />;
+  }
 
   return <AuthContext.Provider value={{ user, login, register, logout }} children={children} />
 }

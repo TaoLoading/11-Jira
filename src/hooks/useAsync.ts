@@ -23,6 +23,12 @@ export const useAsync = <T>(initialState?: State<T>, isThrowError?: boolean) => 
     ...initialState
   })
 
+  const setData = (data: T) => setState({
+    status: 'success',
+    data,
+    error: null
+  })
+
   // 成功时
   const reqSuccess = (data: T) => setState({
     status: 'success',
@@ -67,6 +73,7 @@ export const useAsync = <T>(initialState?: State<T>, isThrowError?: boolean) => 
     reqSuccess,
     reqError,
     run,
+    setData,
     ...state
   }
 }

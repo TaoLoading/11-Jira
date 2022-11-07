@@ -20,7 +20,7 @@ export const ProjectList = () => {
   const [users, setUsers] = useState([])
   // 封装的请求
   const client = useHttp()
-  const { isLoading, error, data, run } = useAsync<Project[]>()
+  const { isLoading, error, data: list, run } = useAsync<Project[]>()
 
   // 查询项目列表数据
   useEffect(() => {
@@ -39,7 +39,7 @@ export const ProjectList = () => {
       <h1>项目列表</h1>
       <SearchPanel users={users} param={param} setParam={setParam}></SearchPanel>
       {error ? <Typography.Text type={"danger"}>{error.message}</Typography.Text> : null}
-      <List users={users} dataSource={data || []} loading={isLoading}></List>
+      <List users={users} dataSource={list || []} loading={isLoading}></List>
     </Container>
   )
 }
