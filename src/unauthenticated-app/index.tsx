@@ -2,7 +2,7 @@
  * 未登录时的应用
  */
 
-import { Card, Button, Divider } from 'antd'
+import { Card, Button, Divider, Typography } from 'antd'
 import { useState } from 'react'
 import styled from '@emotion/styled'
 import { LoginPage } from './login'
@@ -14,6 +14,8 @@ import right from '@/assets/right.svg'
 export const UnauthenticatedApp = () => {
   // 用于判断注册还是登录
   const [isRegister, setRegister] = useState(false)
+  // 错误信息
+  const [errMsg, setErrMsg] = useState<Error | null>(null)
 
   return (
     <Container>
@@ -22,10 +24,16 @@ export const UnauthenticatedApp = () => {
       <ShadowCard>
         <Title>{isRegister ? "注册" : "登录"}</Title>
         {
-          isRegister ? <RegisterPage /> : <LoginPage />
+          errMsg ?
+            <Typography.Text type="danger">
+              {errMsg.message}
+            </Typography.Text> : null
+        }
+        {
+          isRegister ? <RegisterPage onError={setErrMsg} /> : <LoginPage onError={setErrMsg} />
         }
         <Divider />
-        <LongButton onClick={() => setRegister(!isRegister)}>切换到 {isRegister ? "已经有账号了？直接登录" : "没有账号？注册新账号"}</LongButton>
+        <LongButton type="link" onClick={() => setRegister(!isRegister)}>切换到 {isRegister ? "已经有账号了？直接登录" : "没有账号？注册新账号"}</LongButton>
       </ShadowCard>
     </Container>
   )

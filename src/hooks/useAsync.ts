@@ -17,7 +17,7 @@ const defaultStatus: State<null> = {
   error: null
 }
 
-export const useAsync = <T>(initialState?: State<T>) => {
+export const useAsync = <T>(initialState?: State<T>, isThrowError?: boolean) => { // initialState是传入的状态，isThrowError是是否需要抛出异常
   const [state, setState] = useState<State<T>>({
     ...defaultStatus,
     ...initialState
@@ -51,6 +51,10 @@ export const useAsync = <T>(initialState?: State<T>) => {
       return data
     }).catch(err => {
       reqError(err)
+      if (isThrowError) {
+        // catch会消化异常，外部需要使用时需抛出异常
+        return Promise.reject(err)
+      }
       return err
     })
   }

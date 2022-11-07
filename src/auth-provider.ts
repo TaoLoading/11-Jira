@@ -30,7 +30,7 @@ export const register = (data: { username: string, password: string }) => {
       return handleUserResponse(await res.json())
     } else {
       message.error('注册失败')
-      return Promise.reject(data)
+      return Promise.reject(await res.json())
     }
   })
 }
@@ -50,7 +50,7 @@ export const login = (data: { username: string, password: string }) => {
       return handleUserResponse(await res.json())
     } else {
       message.error('登录失败')
-      return Promise.reject(data)
+      return Promise.reject(await res.json())
     }
   })
 }
