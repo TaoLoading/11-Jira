@@ -45,7 +45,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     // 加载程序前先初始化一次user，实现登录持久化
-    // initUser().then(setUser)
     run(initUser())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -57,7 +56,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // 初始失败时展示错误页
   if (isError) {
-    return <PageError error={error} />;
+    return <PageError error={error} />
   }
 
   return <AuthContext.Provider value={{ user, login, register, logout }} children={children} />
