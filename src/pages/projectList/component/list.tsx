@@ -4,11 +4,12 @@
 
 import { Table, TableProps } from 'antd'
 import { useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 import { User } from './searchPanel'
 
 export interface Project {
-  id: string
+  id: number
   name: string,
   personId: string,
   pin: string,
@@ -28,8 +29,10 @@ export const List = ({ users, ...props }: ListProps) => {
     <Table {...props} rowKey="id" pagination={false} columns={[
       {
         title: '名称',
-        dataIndex: 'name',
-        sorter: (a, b) => sorter(a, b, 'name')
+        sorter: (a, b) => sorter(a, b, 'name'),
+        render(value, project) {
+          return <Link to={String(project.id)}>{project.name}</Link>
+        }
       },
       {
         title: '部门',
