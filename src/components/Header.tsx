@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Button, Dropdown, Menu } from 'antd'
 import { useAuth } from '../context/auth-context'
-import { Row } from './lib'
+import { Row } from './Lib'
 // 此种方式渲染svg，可以修改样式
 import { ReactComponent as SoftwareLogo } from '../assets/softwareLogo.svg'
 

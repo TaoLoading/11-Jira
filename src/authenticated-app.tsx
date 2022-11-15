@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 import { Routes, Route, Navigate } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import { ProjectList } from './pages/projectList/index'
-import { ProjectScreen } from './pages/projectScreen'
+import { ProjectScreen } from './pages/ProjectScreen'
 import { Header } from './components/Header'
 
 export const AuthenticatedApp = () => {

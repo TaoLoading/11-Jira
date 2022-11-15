@@ -7,8 +7,8 @@ import * as auth from '../auth-provider'
 import { useAsync } from '../hooks/useAsync'
 import { User } from '../pages/projectList/component/searchPanel'
 import { http } from '../utils/http'
-import { PageLoading } from '../pages/pageLoading'
-import { PageError } from '../pages/pageError'
+import { PageLoading } from '../pages/PageLoading'
+import { PageError } from '../pages/PageError'
 
 interface FormType {
   username: string,

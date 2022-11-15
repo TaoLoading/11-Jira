@@ -10,7 +10,7 @@ import React, { Component } from 'react'
 
 type FullBackRenderType = (props: { error: Error | null }) => React.ReactElement
 
-export class ErrorBoundaries extends Component<{ children: React.ReactNode, fullbackRender: FullBackRenderType }, { error: Error | null }> {
+export class ErrorBoundary extends Component<{ children: React.ReactNode, fullbackRender: FullBackRenderType }, { error: Error | null }> {
   state = { error: null }
 
   // 当子组件抛出异常时会调用该方法，给error赋值
@@ -30,4 +30,4 @@ export class ErrorBoundaries extends Component<{ children: React.ReactNode, full
   }
 }
 
-export default ErrorBoundaries
+export default ErrorBoundary

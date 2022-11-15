@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Dashboard } from '../dashboard'
-import { TaskGroup } from '../taskGroup'
+import { Dashboard } from './Dashboard'
+import { TaskGroup } from './TaskGroup'
 
 export const ProjectScreen = () => {
   return (

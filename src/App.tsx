@@ -2,17 +2,17 @@ import './App.css'
 import { AuthenticatedApp } from './authenticated-app'
 import { useAuth } from './context/auth-context'
 import { UnauthenticatedApp } from './unauthenticated-app'
-import { ErrorBoundaries } from './components/errorBoundary'
-import { PageError } from './pages/pageError'
+import { ErrorBoundary } from './components/ErrorBoundary'
+import { PageError } from './pages/PageError'
 
 function App() {
   const { user } = useAuth()
 
   return (
     <div className="App">
-      <ErrorBoundaries fullbackRender={PageError}>
+      <ErrorBoundary fullbackRender={PageError}>
         {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
-      </ErrorBoundaries>
+      </ErrorBoundary>
     </div>
   )
 }
