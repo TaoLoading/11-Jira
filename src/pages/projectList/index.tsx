@@ -7,13 +7,11 @@ import { cleanObject } from '../../utils/index'
 import { useHttp } from '../../utils/http'
 import { useDebounce } from '../../hooks/useDebounce'
 import { useAsync } from '../../hooks/useAsync'
+import { useUrlQueryParam } from '../../hooks/useUrlQueryParam'
 
 export const ProjectList = () => {
   // 查询参数
-  const [param, setParam] = useState({
-    name: '',
-    personId: ''
-  })
+  const [param, setParam] = useUrlQueryParam(['name', 'personId'])
   // 防抖后的查询参数
   const debouncedParam = useDebounce(param, 500)
   // 用户数据
