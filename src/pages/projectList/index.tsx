@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import styled from '@emotion/styled'
 import { Typography } from 'antd'
 import { List, Project } from './component/list'
@@ -12,8 +12,11 @@ import { useUrlQueryParam } from '../../hooks/useUrlQueryParam'
 export const ProjectList = () => {
   // 查询参数
   const [param, setParam] = useUrlQueryParam(['name', 'personId'])
+  const projectParam = useMemo(() => {
+    return { ...param, personId: Number(param.personId) }
+  }, [param])
   // 防抖后的查询参数
-  const debouncedParam = useDebounce(param, 500)
+  const debouncedParam = useDebounce(projectParam, 500)
   // 用户数据
   const [users, setUsers] = useState([])
   // 封装的请求
@@ -35,7 +38,7 @@ export const ProjectList = () => {
   return (
     <Container>
       <h1>项目列表</h1>
-      <SearchPanel users={users} param={param} setParam={setParam}></SearchPanel>
+      <SearchPanel users={users} param={projectParam} setParam={setParam}></SearchPanel>
       {error ? <Typography.Text type={"danger"}>{error.message}</Typography.Text> : null}
       <List users={users} dataSource={list || []} loading={isLoading}></List>
     </Container>

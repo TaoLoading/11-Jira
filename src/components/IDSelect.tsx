@@ -8,12 +8,12 @@ import React from 'react'
 import { Select } from 'antd'
 
 // 拿到Select组件的全部属性及其类型
-type SelectPropsType = React.ConsumerProps<typeof Select>
+type SelectPropsType = React.ComponentProps<typeof Select>
 
-interface IDSelectType extends SelectPropsType {
-  value: number | string | null | undefined,
+interface IDSelectType extends Omit<SelectPropsType, 'value' | 'onChange' | 'options'> {
+  value?: number | string | null | undefined,
   onChange: (value?: number) => void,
-  defaultOptionsName?: string,
+  defaultOptionName?: string,
   options?: { name: string, id: number }[]
 }
 
@@ -24,12 +24,12 @@ const toNumber = (value: unknown) => isNaN(Number(value)) ? 0 : Number(value)
  * 当 isNaN(Number(value)) 为false时，代表value是传入的有效id，即为获取到的每个选项
  */
 export const IDSelect = (props: IDSelectType) => {
-  const { value, onChange, defaultOptionsName, options, ...restProps } = props
+  const { value, onChange, defaultOptionName, options, ...restProps } = props
 
   return (
     <Select value={toNumber(value)} onChange={value => onChange(toNumber(value) || undefined)} {...restProps}>
       {
-        defaultOptionsName ? (<Select.Option value={0}>{defaultOptionsName}</Select.Option>) : null
+        defaultOptionName ? (<Select.Option value={0}>{defaultOptionName}</Select.Option>) : null
       }
       {
         options?.map(options => <Select.Option key={options.id} value={options.id}>{options.name}</Select.Option>)

@@ -11,7 +11,7 @@ import { User } from './searchPanel'
 export interface Project {
   id: number
   name: string,
-  personId: string,
+  personId: number,
   pin: string,
   organization: string,
   created: number
