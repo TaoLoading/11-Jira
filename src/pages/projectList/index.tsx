@@ -1,24 +1,11 @@
-import { useMemo } from 'react'
 import styled from '@emotion/styled'
 import { Typography } from 'antd'
 import { List } from './component/list'
 import { SearchPanel } from './component/searchPanel'
-import { toNumber } from '../../utils/index'
 import { useDebounce } from '../../hooks/useDebounce'
-import { useUrlQueryParam } from '../../hooks/useUrlQueryParam'
 import { useUser } from '../../hooks/useUser'
 import { useProject } from '../../hooks/useProject'
-
-const useProjectSearchParams = () => {
-  const [param, setParam] = useUrlQueryParam(['name', 'personId'])
-  return [
-    // 关键，否则会因为重新定义对象，导致组件无限重渲染
-    useMemo(() => (
-      { ...param, personId: toNumber(param.personId) || undefined }
-    ), [param]),
-    setParam
-  ] as const
-}
+import { useProjectSearchParams } from '../../hooks/useProjectSearchParams'
 
 export const ProjectList = () => {
   // 查询参数
