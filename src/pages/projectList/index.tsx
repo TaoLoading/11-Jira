@@ -1,14 +1,13 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import styled from '@emotion/styled'
 import { Typography } from 'antd'
-import { List, Project } from './component/list'
+import { List } from './component/list'
 import { SearchPanel } from './component/searchPanel'
-import { cleanObject, toNumber } from '../../utils/index'
-import { useHttp } from '../../utils/http'
+import { toNumber } from '../../utils/index'
 import { useDebounce } from '../../hooks/useDebounce'
-import { useAsync } from '../../hooks/useAsync'
 import { useUrlQueryParam } from '../../hooks/useUrlQueryParam'
 import { useUser } from '../../hooks/useUser'
+import { useProject } from '../../hooks/useProject'
 
 const useProjectSearchParams = () => {
   const [param, setParam] = useUrlQueryParam(['name', 'personId'])
@@ -26,16 +25,8 @@ export const ProjectList = () => {
   const [param, setParam] = useProjectSearchParams()
   // 防抖后的查询参数
   const debouncedParam = useDebounce(param, 200)
-  // 封装的请求
-  const client = useHttp()
-  const { isLoading, error, data: list, run } = useAsync<Project[]>()
-
   // 查询项目列表数据
-  useEffect(() => {
-    run(client('projects', { data: cleanObject(debouncedParam) }))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedParam])
-
+  const { isLoading, error, data: list } = useProject(debouncedParam)
   // 查询用户数据
   const { data: users } = useUser()
 

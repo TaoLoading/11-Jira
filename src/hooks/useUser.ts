@@ -9,11 +9,12 @@ import { User } from '../pages/projectList/component/searchPanel'
 
 export const useUser = (param?: Partial<User>) => {
   const client = useHttp()
+
   return useQuery<User[], Error>(
     ['users', cleanObject(param || {})],
     () => {
       return client('users', {
-        data: param,
+        data: param
       })
     }
   )
