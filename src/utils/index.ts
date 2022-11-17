@@ -10,3 +10,6 @@ export const cleanObject = (object: { [key: string]: unknown }) => {
   })
   return result
 }
+
+// 转化为数字
+export const toNumber = (value: unknown) => isNaN(Number(value)) ? 0 : Number(value)

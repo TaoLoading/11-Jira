@@ -6,6 +6,7 @@
 
 import React from 'react'
 import { Select } from 'antd'
+import { toNumber } from '../utils'
 
 // 拿到Select组件的全部属性及其类型
 type SelectPropsType = React.ComponentProps<typeof Select>
@@ -16,8 +17,6 @@ interface IDSelectType extends Omit<SelectPropsType, 'value' | 'onChange' | 'opt
   defaultOptionName?: string,
   options?: { name: string, id: number }[]
 }
-
-const toNumber = (value: unknown) => isNaN(Number(value)) ? 0 : Number(value)
 
 /**
  * 当 isNaN(Number(value)) 为true时，代表value不是个有效的id，即为默认的选项
