@@ -17,8 +17,8 @@ export const Header = () => {
         <Button type="link" onClick={backHome}>
           <SoftwareLogo width={"18rem"} color={"rgb(38, 132, 255)"} />
         </Button>
-        <h2>项目</h2>
-        <h2>用户</h2>
+        {/* <h2>项目</h2>
+        <h2>用户</h2> */}
       </HeaderLeft>
       <HeaderRight>
         <Dropdown overlay={
