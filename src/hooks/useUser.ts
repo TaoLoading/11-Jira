@@ -3,9 +3,9 @@
  */
 
 import { useQuery } from 'react-query'
+import { User } from '../interface/User'
 import { cleanObject } from '../utils'
 import { useHttp } from '../utils/http'
-import { User } from '../pages/projectList/component/searchPanel'
 
 export const useUser = (param?: Partial<User>) => {
   const client = useHttp()

@@ -6,16 +6,9 @@ import { Table, TableProps } from 'antd'
 import { useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
-import { User } from './searchPanel'
+import { Project } from '../../../interface/Project'
+import { User } from '../../../interface/User'
 
-export interface Project {
-  id: number
-  name: string,
-  personId: number,
-  pin: string,
-  organization: string,
-  created: number
-}
 interface ListProps extends TableProps<Project> {
   users: User[]
 }

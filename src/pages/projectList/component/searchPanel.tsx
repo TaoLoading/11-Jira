@@ -4,16 +4,8 @@
 
 import { Form, Input } from 'antd'
 import { UserSelect } from '../../../components/UserSelect'
-import { Project } from './list'
-
-export interface User {
-  id: number,
-  name: string,
-  email: string,
-  title: string,
-  organization: string,
-  token: string
-}
+import { Project } from '../../../interface/Project'
+import { User } from '../../../interface/User'
 
 interface SearchPanelProps {
   users: User[],

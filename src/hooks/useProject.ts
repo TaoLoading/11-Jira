@@ -4,9 +4,9 @@
 
 import { cleanObject } from '../utils'
 import { useHttp } from '../utils/http'
-import { Project } from '../pages/projectList/component/list'
 import { useAsync } from './useAsync'
 import { useEffect } from 'react'
+import { Project } from '../interface/Project'
 
 export const useProject = (param?: Partial<Project>) => {
   const client = useHttp()

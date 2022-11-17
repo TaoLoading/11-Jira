@@ -3,7 +3,7 @@
  */
 
 import { message } from 'antd'
-import { User } from './pages/projectList/component/searchPanel'
+import { User } from './interface/User'
 
 const localStorageKey = '__auth_provider_token__'
 const apiUrl = process.env.REACT_APP_API_URL
