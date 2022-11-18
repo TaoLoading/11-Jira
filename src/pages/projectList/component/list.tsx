@@ -8,18 +8,32 @@ import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 import { Project } from '../../../interface/Project'
 import { User } from '../../../interface/User'
+import { Star } from '../../../components/Star'
+import { useEditProject } from '../../../hooks/useEditProject'
 
 interface ListProps extends TableProps<Project> {
   users: User[]
 }
 
 export const List = ({ users, ...props }: ListProps) => {
+  // 排序
   const sorter = useCallback((a: Project, b: Project, key: 'name' | 'organization') => {
     return a[key].localeCompare(b[key])
   }, [])
 
+  // 更改是否收藏
+  const { change } = useEditProject()
+
   return (
     <Table {...props} rowKey="id" pagination={false} columns={[
+      {
+        title: <Star checked={true} disabled={true} />,
+        render(value, project) {
+          return <Star checked={project.pin} onCheckedChange={pin => {
+            change({ id: project.id, pin })
+          }} />
+        }
+      },
       {
         title: '名称',
         sorter: (a, b) => sorter(a, b, 'name'),

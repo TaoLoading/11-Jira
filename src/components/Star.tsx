@@ -18,7 +18,7 @@ export const Star = (props: starPropsType) => {
       {...restProps}
       count={1}
       value={checked ? 1 : 0}
-      onChange={(num) => onCheckedChange?.(!!num)}
+      onChange={(num) => onCheckedChange?.(Boolean(num))}
     />
   )
 }
