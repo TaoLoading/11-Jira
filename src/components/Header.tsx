@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { Button, Dropdown, Menu } from 'antd'
 import { useAuth } from '../context/auth-context'
-import { Row } from './Lib'
-// 此种方式渲染svg，可以修改样式
+import { Row } from './lib'
+// 此种方式渲染 svg，可以修改样式
 import { ReactComponent as SoftwareLogo } from '../assets/softwareLogo.svg'
 
 export const Header = () => {
@@ -34,7 +34,7 @@ export const Header = () => {
           ]} />
         }>
           <Button type="link">
-            你好, {user?.name}
+            你好，{user?.name}
           </Button>
         </Dropdown>
       </HeaderRight>

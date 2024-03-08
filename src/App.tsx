@@ -2,7 +2,7 @@ import './App.css'
 import { AuthenticatedApp } from './authenticated-app'
 import { useAuth } from './context/auth-context'
 import { UnauthenticatedApp } from './unauthenticated-app'
-import { ErrorBoundary } from './components/ErrorBoundary'
+import { ErrorBoundary } from './components/errorBoundary'
 import { PageError } from './pages/PageError'
 
 function App() {
